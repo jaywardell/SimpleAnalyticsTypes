@@ -7,7 +7,16 @@
 
 import XCTest
 
-final class Tests: XCTestCase {
+@testable
+import SimpleAnalyticsTypes
 
-    // no tests for this project. it just vends a type
+final class Tests: XCTestCase {
+    
+    func test_init_takes_timeIntervalSinceReferenceDate_for_timestamp() {
+        let now = Date()
+        
+        let sut = UserEvent(date: now, action: .start, userID: UUID())
+        
+        XCTAssertEqual(sut.timestamp, now.timeIntervalSinceReferenceDate)
+    }
 }
